@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 110223811}
   - component: {fileID: 110223810}
   - component: {fileID: 110223809}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Right
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 110223807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 21, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 42}
+  m_LocalScale: {x: 2, y: 2, z: 42}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1944180457}
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 620838858}
   - component: {fileID: 620838857}
   - component: {fileID: 620838856}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Left
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ Transform:
   m_GameObject: {fileID: 620838854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -21, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 42}
+  m_LocalScale: {x: 2, y: 2, z: 42}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1944180457}
@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 899745739}
   - component: {fileID: 899745738}
   - component: {fileID: 899745737}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Top
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -657,7 +657,7 @@ Transform:
   m_GameObject: {fileID: 899745735}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 21}
-  m_LocalScale: {x: 42, y: 2, z: 1}
+  m_LocalScale: {x: 42, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1944180457}
@@ -944,7 +944,7 @@ GameObject:
   - component: {fileID: 1217060524}
   - component: {fileID: 1217060523}
   - component: {fileID: 1217060522}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottom
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -960,7 +960,7 @@ Transform:
   m_GameObject: {fileID: 1217060520}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -21}
-  m_LocalScale: {x: 42, y: 2, z: 1}
+  m_LocalScale: {x: 42, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1944180457}
@@ -1068,7 +1068,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1245741759}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 16, y: 1, z: -16.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1163,7 +1163,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 10000
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 1738382156}
 --- !u!114 &1245741768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1189,7 +1189,7 @@ MonoBehaviour:
   - PowerupSpeed
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 211
   m_MaxColliderBufferSize: 500
   m_InitialColliderBufferSize: 4
   m_DebugColors:
