@@ -8,6 +8,8 @@ TagManager:
   - Wall
   - PowerupGood
   - PowerupBad
+  - Floor
+  - PowerupSpeed
   layers:
   - Default
   - TransparentFX

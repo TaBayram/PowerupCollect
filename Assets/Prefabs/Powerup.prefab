@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4274447719288028834}
   - component: {fileID: 701016190543777308}
   - component: {fileID: 8057242648578023689}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7137246462655481483}
   - component: {fileID: 2101833055669997569}
   - component: {fileID: 3735678119588075930}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4921,7 +4921,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3797027929072478231}
   - component: {fileID: 5558741003259312093}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Powerup
   m_TagString: Powerup
   m_Icon: {fileID: 0}
@@ -4967,4 +4967,4 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}

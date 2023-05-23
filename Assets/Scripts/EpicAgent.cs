@@ -5,9 +5,11 @@ using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EpicAgent : Agent
 {
+    public GameManager gameManager;
     Rigidbody cRigidbody;
     Unit unit;
 
@@ -21,19 +23,22 @@ public class EpicAgent : Agent
 
         this.cRigidbody.angularVelocity = Vector3.zero;
         this.cRigidbody.velocity = Vector3.zero;
-        this.transform.localPosition = new Vector3(0, 0.5f, 0);
-
-
+        this.transform.position = gameManager.GetRandomSpawnLocation();
+        this.transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0, 360)));
 
     }
 
     public override void CollectObservations(VectorSensor sensor) {
         var localVelocity = transform.InverseTransformDirection(cRigidbody.velocity);
-        sensor.AddObservation(cRigidbody.velocity.x);
-        sensor.AddObservation(cRigidbody.velocity.z);
+        var normalizedVelocity = cRigidbody.velocity.normalized;
+        //sensor.AddObservation(normalizedVelocity.x);
+        //sensor.AddObservation(normalizedVelocity.z);
     }
 
-    public float forceMultiplier = 10;
+    private void FixedUpdate() {
+        AddReward(-0.01f * Time.deltaTime);
+    }
+
     public override void OnActionReceived(ActionBuffers actionBuffers) {
         // Actions, size = 2
 
@@ -54,17 +59,23 @@ public class EpicAgent : Agent
     }
 
     private void OnTriggerEnter(Collider other) {
+        
         var powerup = other.GetComponent<Powerup>();
         if(powerup != null) {
             switch (powerup.type) {
                 case Powerup.Type.Bad:
-                    Console.Write("Bad");
+                    var reward = Math.Min(-1, -GetCumulativeReward());
+                    Debug.Log("Powerup "+powerup.type + " reward: "+ reward);
+                    AddReward(reward);
                     EndEpisode();
                     break;
                 case Powerup.Type.Good:
+                    Debug.Log("Powerup " + powerup.type + " reward: " + 1 + " total "+ GetCumulativeReward());
                     AddReward(1);
                     break;
                 case Powerup.Type.Speed:
+                    Debug.Log("Powerup " + powerup.type + " reward: " + 0.05f + " total " + GetCumulativeReward());
+                    AddReward(0.05f);
                     break;
             }
         }

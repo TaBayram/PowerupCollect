@@ -9,7 +9,20 @@ public class Unit : MonoBehaviour, IUnit
     private double speed;
     public double Speed { get => speed; set => speed = value; }
 
-    public void BuffSpeedTimed(double amount, double duration) {
-        
+    private double originalSpeed;
+
+    private void Start() {
+        originalSpeed = speed;
     }
+    public void BuffSpeedTimed(double amount, double duration) {
+        StartCoroutine(IncreaseSpeed(amount, duration));
+    }
+
+    private IEnumerator IncreaseSpeed(double amount, double duration) {
+        var modifiedSpeed = amount * originalSpeed;
+        Speed += modifiedSpeed;
+        yield return new WaitForSeconds((float)duration);
+        Speed -= modifiedSpeed;
+    }
+
 }

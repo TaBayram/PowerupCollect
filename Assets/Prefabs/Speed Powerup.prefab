@@ -54,30 +54,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4028023672980701083, guid: 5c9fc87d0bd05a444a1309fc7a6df6e7, type: 3}
       propertyPath: m_Name
-      value: Bad Powerup
+      value: Speed Powerup
       objectReference: {fileID: 0}
     - target: {fileID: 4028023672980701083, guid: 5c9fc87d0bd05a444a1309fc7a6df6e7, type: 3}
       propertyPath: m_TagString
-      value: PowerupBad
+      value: PowerupSpeed
       objectReference: {fileID: 0}
     - target: {fileID: 8057242648578023689, guid: 5c9fc87d0bd05a444a1309fc7a6df6e7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 5a26de236ce89e94b963be8fa2b7ade6, type: 2}
+      objectReference: {fileID: 2100000, guid: 79f64ed6f5d6d374d91c3a0af4070258, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4028023672980701083, guid: 5c9fc87d0bd05a444a1309fc7a6df6e7, type: 3}
       insertIndex: 1
-      addedObject: {fileID: 8754213268588658760}
+      addedObject: {fileID: 7938206169437368166}
   m_SourcePrefab: {fileID: 100100000, guid: 5c9fc87d0bd05a444a1309fc7a6df6e7, type: 3}
 --- !u!1 &8617832834477385703 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4028023672980701083, guid: 5c9fc87d0bd05a444a1309fc7a6df6e7, type: 3}
   m_PrefabInstance: {fileID: 4647393198335334524}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8754213268588658760
+--- !u!114 &7938206169437368166
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,10 +86,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8617832834477385703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7fba2dd0f735e54bbd9fc46ce91372c, type: 3}
+  m_Script: {fileID: 11500000, guid: d36af1cf5fd6d3041b8186bd43a288a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Death
-  type: 0
+  name: Speed
+  type: 2
   isUsed: 0
-  lifeTime: 15
+  lifeTime: 10
+  speed: 0.358
+  duration: 3

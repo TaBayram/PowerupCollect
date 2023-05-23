@@ -88,4 +88,4 @@ MonoBehaviour:
   name: Point
   type: 1
   isUsed: 0
-  lifeTime: 10
+  lifeTime: 15
