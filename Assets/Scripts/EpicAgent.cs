@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 public class EpicAgent : Agent
 {
     public GameManager gameManager;
+    public GameObject model;
     Rigidbody cRigidbody;
     Unit unit;
 
@@ -31,8 +32,16 @@ public class EpicAgent : Agent
     public override void CollectObservations(VectorSensor sensor) {
         var localVelocity = transform.InverseTransformDirection(cRigidbody.velocity);
         var normalizedVelocity = cRigidbody.velocity.normalized;
+        //sensor.AddObservation(transform.localPosition.x);
+        //sensor.AddObservation(transform.localPosition.y);
         //sensor.AddObservation(normalizedVelocity.x);
         //sensor.AddObservation(normalizedVelocity.z);
+    }
+
+    private void Update() {
+        if(cRigidbody.velocity != Vector3.zero) {
+            model.transform.rotation = Quaternion.LookRotation(cRigidbody.velocity, transform.up);
+        }
     }
 
     private void FixedUpdate() {
@@ -56,6 +65,10 @@ public class EpicAgent : Agent
         cRigidbody.AddForce(dirToGo * (float)unit.Speed, ForceMode.VelocityChange);
         transform.Rotate(rotateDir, Time.fixedDeltaTime *(float)unit.Speed);
 
+        if(this.transform.position.y < (this.gameManager.transform.position.y - 1)) {
+            EndEpisode();
+        }
+
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -65,19 +78,22 @@ public class EpicAgent : Agent
             switch (powerup.type) {
                 case Powerup.Type.Bad:
                     var reward = Math.Min(-1, -GetCumulativeReward());
-                    Debug.Log("Powerup "+powerup.type + " reward: "+ reward);
                     AddReward(reward);
                     EndEpisode();
                     break;
                 case Powerup.Type.Good:
-                    Debug.Log("Powerup " + powerup.type + " reward: " + 1 + " total "+ GetCumulativeReward());
                     AddReward(1);
                     break;
                 case Powerup.Type.Speed:
-                    Debug.Log("Powerup " + powerup.type + " reward: " + 0.05f + " total " + GetCumulativeReward());
                     AddReward(0.05f);
                     break;
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        if(collision.gameObject.tag == "Wall") {
+            AddReward(-0.01f);
         }
     }
 

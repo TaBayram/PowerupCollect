@@ -45,7 +45,7 @@ public class PowerupSpawner : MonoBehaviour
             Vector3 position = new Vector3(Random.Range(botRight.x, topLeft.x), 0, Random.Range(topLeft.y, botRight.y));
 
             var powerup = Instantiate(powerupPrefab, transform);
-            powerup.transform.position = position;
+            powerup.transform.position = position + this.transform.position;
         }
 
     }
