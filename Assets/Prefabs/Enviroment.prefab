@@ -76,12 +76,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216c7ade817fd564b99cf2d624899504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enviroment: {fileID: 8338863219522416942}
   powerupSpawner: {fileID: 3003901694379001352}
   spawnLocations:
   - {fileID: 454526430980359779}
   - {fileID: 8420787278953265217}
   - {fileID: 8014962063568137670}
   - {fileID: 6459876924203162206}
+  units: []
+  scoreToWin: 15
+  round: 0
+  roundDatas: []
+  roundStartTime: 0
 --- !u!1 &3447766679089014679
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,6 +703,7 @@ Transform:
   m_Children:
   - {fileID: 1806306297886252680}
   - {fileID: 370251209382802543}
+  - {fileID: 3013243797058081322}
   - {fileID: 9103308526788387405}
   - {fileID: 8190142027357935772}
   m_Father: {fileID: 0}
@@ -862,7 +869,7 @@ MonoBehaviour:
     chance: 100
   interval: 1
   spawn: 1
---- !u!1001 &2352480721319361241
+--- !u!1001 &889430170724834460
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -870,6 +877,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9220578177478761998}
     m_Modifications:
+    - target: {fileID: 215261164172067188, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: playerName
+      value: Henry
+      objectReference: {fileID: 0}
+    - target: {fileID: 215261164172067188, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 5649073269087400253}
     - target: {fileID: 2704083113844821686, guid: 43d4075cde684c64c879654407a47827, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -920,7 +935,85 @@ PrefabInstance:
       objectReference: {fileID: 5649073269087400253}
     - target: {fileID: 8208294857170045897, guid: 43d4075cde684c64c879654407a47827, type: 3}
       propertyPath: m_Name
-      value: EpicAgent
+      value: EpicAgent_2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 43d4075cde684c64c879654407a47827, type: 3}
+--- !u!4 &3013243797058081322 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2704083113844821686, guid: 43d4075cde684c64c879654407a47827, type: 3}
+  m_PrefabInstance: {fileID: 889430170724834460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2352480721319361241
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9220578177478761998}
+    m_Modifications:
+    - target: {fileID: 215261164172067188, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: playerName
+      value: Jacop
+      objectReference: {fileID: 0}
+    - target: {fileID: 215261164172067188, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 5649073269087400253}
+    - target: {fileID: 2704083113844821686, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704083113844821686, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704083113844821686, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704083113844821686, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704083113844821686, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704083113844821686, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704083113844821686, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704083113844821686, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704083113844821686, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704083113844821686, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704083113844821686, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171148387867814234, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 5649073269087400253}
+    - target: {fileID: 8208294857170045897, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: m_Name
+      value: EpicAgent_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

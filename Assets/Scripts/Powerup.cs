@@ -14,7 +14,7 @@ public abstract class Powerup : MonoBehaviour
 
     public double lifeTime = 5;
 
-    public abstract bool Pickup(Collider other);
+    public abstract bool Pickup(Unit unit);
 
     private void Start() {
         
@@ -29,9 +29,14 @@ public abstract class Powerup : MonoBehaviour
 
 
     private void OnTriggerEnter(Collider other) {
-        if (Pickup(other)) {
-            Remove();
+        var unit = other.GetComponentInChildren<Unit>();
+        if(unit != null) {
+            unit.OnPowerupCollected(type);
+            if (Pickup(unit)) {
+                Remove();
+            }
         }
+       
     }
 
 

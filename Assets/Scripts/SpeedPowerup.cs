@@ -8,8 +8,7 @@ public class SpeedPowerup : Powerup
     public float speed;
     public float duration;
 
-    public override bool Pickup(Collider other) {
-        var unit = other.GetComponentInChildren<IUnit>();
+    public override bool Pickup(Unit unit) {
         if(unit != null) {
             unit.BuffSpeedTimed(speed, duration);
             return true;

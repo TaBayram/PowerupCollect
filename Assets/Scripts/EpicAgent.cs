@@ -9,24 +9,45 @@ using Random = UnityEngine.Random;
 
 public class EpicAgent : Agent
 {
-    public GameManager gameManager;
     public GameObject model;
     Rigidbody cRigidbody;
     Unit unit;
+    GameManager gameManager;
+
+    private bool hasJustReset = false;
+
 
     void Start() {
         cRigidbody = GetComponent<Rigidbody>();
         unit = GetComponent<Unit>();
+        gameManager = unit.gameManager;
 
+        unit.onReset += onUnitReset;
+        unit.onRoundEnd += onUnitRoundEnd;
+    }
+
+    private void onUnitReset(Unit unit) {
+        hasJustReset = true;
+        EndEpisode();
+    }
+
+    private void onUnitRoundEnd(bool hasWon) {
+        if (hasWon) {
+            AddReward(10);
+        }
+        else {
+            AddReward(-10);
+        }
     }
 
     public override void OnEpisodeBegin() {
-
         this.cRigidbody.angularVelocity = Vector3.zero;
         this.cRigidbody.velocity = Vector3.zero;
-        this.transform.position = gameManager.GetRandomSpawnLocation();
         this.transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0, 360)));
-
+        if(!hasJustReset) {
+            this.unit.ResetUnit(true);
+        }
+        hasJustReset = false;
     }
 
     public override void CollectObservations(VectorSensor sensor) {
@@ -65,7 +86,7 @@ public class EpicAgent : Agent
         cRigidbody.AddForce(dirToGo * (float)unit.Speed, ForceMode.VelocityChange);
         transform.Rotate(rotateDir, Time.fixedDeltaTime *(float)unit.Speed);
 
-        if(this.transform.position.y < (this.gameManager.transform.position.y - 1)) {
+        if(transform.position.y < ((gameManager?.FloorY ?? 0f) - 1)) {
             EndEpisode();
         }
 

@@ -4942,8 +4942,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 10000
-  gameManager: {fileID: 0}
+  MaxStep: 50000
   model: {fileID: 3867691146629058022}
 --- !u!114 &7419250418931445378
 MonoBehaviour:
@@ -5039,7 +5038,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3f26d86f243a148a74c67e9e9c1f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: 
   speed: 0.5
+  winCount: 0
+  lossCount: 0
+  powerupPickupData: []
+  gameManager: {fileID: 0}
 --- !u!1001 &3868331596125998774
 PrefabInstance:
   m_ObjectHideFlags: 0
