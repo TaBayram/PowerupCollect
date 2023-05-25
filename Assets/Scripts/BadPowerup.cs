@@ -6,7 +6,7 @@ public class BadPowerup : Powerup
 {
     public override bool Pickup(Unit unit) {
         if (unit != null) {
-            unit.ResetUnit();
+            unit.ResetUnit(ResetReason.died);
             return true;
         }
         return false;

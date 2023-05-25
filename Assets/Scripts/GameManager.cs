@@ -7,21 +7,22 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     public string gameName;
-    public bool isTraining = true;
     public GameObject enviroment;
     public PowerupSpawner powerupSpawner;
-
     public List<Transform> spawnLocations = new List<Transform>();
-
     public List<Unit> units = new List<Unit>();
 
+    public List<RoundData> roundDatas = new List<RoundData>();
+    public int roundTimeLimit = 60;
+    public int roundWinTimeDecrement = 10;
+    public int minRoundTime = 0;
     public int scoreToWin = 20;
     public int round = 0;
-    public List<RoundData> roundDatas = new List<RoundData>();
 
     public float roundStartTime = 0;
 
-
+    public bool isTraining = true;
+    public bool gameStarted = false;
     public float FloorY { get => enviroment.transform.position.y; }
 
     private void Start() {
@@ -29,8 +30,22 @@ public class GameManager : MonoBehaviour
         foreach (var unit in units) {
             unit.onScoreChange += onUnitScoreChange;
         }
-        StartRound();
+        minRoundTime = minRoundTime == 0 ? (int)Mathf.Max(roundTimeLimit * 0.10f, 30): minRoundTime;
+        StartCoroutine(StartGame());
     }
+
+    private void Update() {
+        if(roundTimeLimit != 0 && roundTimeLimit < Time.time - roundStartTime) {
+            EndRound(null);
+        }
+    }
+
+    private IEnumerator StartGame() {
+        yield return new WaitForSeconds(1);
+        StartRound();
+        gameStarted = true;
+    }
+
 
     public Vector3 GetRandomSpawnLocation() {
         return spawnLocations[Random.Range(0, spawnLocations.Count)].position;
@@ -49,8 +64,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void EndRound(Unit winner) {
-        var data = new RoundData(round, winner, Time.time - roundStartTime);
-        winner.Won();
+        var data = new RoundData(round, winner, Time.time - roundStartTime, scoreToWin, roundTimeLimit);
+        winner?.Won();
         foreach (var unit in units) {
             if (winner != unit) {
                 unit.Lost();
@@ -65,7 +80,10 @@ public class GameManager : MonoBehaviour
         roundDatas.Add(data);
         //Debug.Log(gameName + "\n" + data.Print() + "\n ----------");
         if (isTraining) {
-            data.Record(scoreToWin);
+            data.Record();
+        }
+        if (winner != null) {
+            roundTimeLimit = Mathf.Max(minRoundTime, roundTimeLimit - roundWinTimeDecrement);
         }
 
         StartRound();
@@ -73,7 +91,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetRound() {
         foreach (var unit in units) {
-            unit.ResetUnit();
+            unit.ResetUnit(ResetReason.roundStarted);
         }
     }
 

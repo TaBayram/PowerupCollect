@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum ResetReason
+{
+    roundStarted=1,
+    died = 2,
+}
+
 public class Unit : MonoBehaviour, IUnit
 {
     public string playerName;
@@ -18,7 +24,7 @@ public class Unit : MonoBehaviour, IUnit
 
     public Action<Unit> onScoreChange;
     public Action<bool> onRoundEnd;
-    public Action<Unit> onReset;
+    public Action<Unit, ResetReason> onReset;
 
     public GameManager gameManager;
 
@@ -32,6 +38,7 @@ public class Unit : MonoBehaviour, IUnit
 
     private void Start() {
         originalSpeed = speed;
+        speed = 0;
     }
 
     private void FixedUpdate() {
@@ -68,17 +75,16 @@ public class Unit : MonoBehaviour, IUnit
         Speed -= modifiedSpeed;
     }
 
-    public void ResetUnit(bool silent = false) {
+    public void ResetUnit(ResetReason resetReason) {
         for (int i = 0; i < coroutines.Count; i++) {
             StopCoroutine(coroutines[i]);
         }
         coroutines.Clear();
-        speed = originalSpeed;
-        score = 0;
+        Speed = originalSpeed;
+        Score = 0;
         transform.position = gameManager.GetRandomSpawnLocation();
-        if(!silent) {
-            onReset?.Invoke(this);
-        }
+        onReset?.Invoke(this, resetReason);
+        
     }
 
     internal void Won() {

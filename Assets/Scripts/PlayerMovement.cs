@@ -35,12 +35,12 @@ public class PlayerMovement : MonoBehaviour
         cController.Move(playerVelocity * Time.deltaTime);
 
         if (transform.position.y < ((unit.gameManager?.FloorY ?? 0f) - 1)) {
-            unit.ResetUnit();
+            unit.ResetUnit(ResetReason.died);
         }
 
     }
 
-    public void onResetUnit(Unit unit) {
+    public void onResetUnit(Unit unit, ResetReason reason) {
         cController.enabled = false;
         transform.position = unit.gameManager.GetRandomSpawnLocation();
         cController.enabled = true;

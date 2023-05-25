@@ -14,8 +14,6 @@ public class EpicAgent : Agent
     Unit unit;
     GameManager gameManager;
 
-    private bool hasJustReset = false;
-
 
     void Start() {
         cRigidbody = GetComponent<Rigidbody>();
@@ -26,9 +24,10 @@ public class EpicAgent : Agent
         unit.onRoundEnd += onUnitRoundEnd;
     }
 
-    private void onUnitReset(Unit unit) {
-        hasJustReset = true;
-        EndEpisode();
+    private void onUnitReset(Unit unit, ResetReason reason) {
+        if(reason == ResetReason.roundStarted) {
+            EndEpisode();
+        }
     }
 
     private void onUnitRoundEnd(bool hasWon) {
@@ -66,7 +65,7 @@ public class EpicAgent : Agent
     }
 
     private void FixedUpdate() {
-        AddReward(-0.01f * Time.deltaTime);
+        AddReward(-0.005f * Time.deltaTime);
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers) {

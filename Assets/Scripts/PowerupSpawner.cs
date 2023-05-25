@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 
 public class PowerupSpawner : MonoBehaviour
 {
+    public GameManager gameManager;
     public Vector2 topLeft = Vector2.zero;
     public Vector2 botRight = Vector2.zero;
     public List<PowerupSpawnSetting> spawnSettings = new List<PowerupSpawnSetting>();
@@ -18,8 +19,12 @@ public class PowerupSpawner : MonoBehaviour
 
     private double cooldown;
 
+    private void Start() {
+    }
+
     void Update()
     {
+        if (!gameManager.gameStarted) return;
         cooldown -= Time.deltaTime;
         if(cooldown < 0) {
             cooldown = interval;
