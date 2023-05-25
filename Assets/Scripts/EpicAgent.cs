@@ -44,10 +44,10 @@ public class EpicAgent : Agent
         this.cRigidbody.angularVelocity = Vector3.zero;
         this.cRigidbody.velocity = Vector3.zero;
         this.transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0, 360)));
-        if(!hasJustReset) {
-            this.unit.ResetUnit(true);
-        }
-        hasJustReset = false;
+        //if(!hasJustReset) {
+        //    this.unit.ResetUnit(true);
+        //}
+        //hasJustReset = false;
     }
 
     public override void CollectObservations(VectorSensor sensor) {
@@ -100,7 +100,6 @@ public class EpicAgent : Agent
                 case Powerup.Type.Bad:
                     var reward = Math.Min(-1, -GetCumulativeReward());
                     AddReward(reward);
-                    EndEpisode();
                     break;
                 case Powerup.Type.Good:
                     AddReward(1);

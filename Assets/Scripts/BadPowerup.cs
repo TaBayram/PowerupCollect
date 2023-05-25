@@ -6,7 +6,7 @@ public class BadPowerup : Powerup
 {
     public override bool Pickup(Unit unit) {
         if (unit != null) {
-            unit.Score = 0;
+            unit.ResetUnit();
             return true;
         }
         return false;

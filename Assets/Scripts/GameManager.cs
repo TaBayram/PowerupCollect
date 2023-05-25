@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     public string gameName;
+    public bool isTraining = true;
     public GameObject enviroment;
     public PowerupSpawner powerupSpawner;
 
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
         foreach (var unit in units) {
             unit.onScoreChange += onUnitScoreChange;
         }
+        StartRound();
     }
 
     public Vector3 GetRandomSpawnLocation() {
@@ -40,10 +42,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ResetRound() {
-        foreach (var unit in units) {
-            unit.ResetUnit();
-        }
+    public void StartRound() {
+        ResetRound();
         roundStartTime = Time.time;
         round++;
     }
@@ -64,12 +64,19 @@ public class GameManager : MonoBehaviour
         data.units.AddRange(units);
         roundDatas.Add(data);
         //Debug.Log(gameName + "\n" + data.Print() + "\n ----------");
-        data.Record(scoreToWin);
+        if (isTraining) {
+            data.Record(scoreToWin);
+        }
 
-        ResetRound();
-
-        
+        StartRound();
     }
+
+    public void ResetRound() {
+        foreach (var unit in units) {
+            unit.ResetUnit();
+        }
+    }
+
 
 
 }
