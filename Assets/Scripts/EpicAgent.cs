@@ -32,10 +32,10 @@ public class EpicAgent : Agent
 
     private void onUnitRoundEnd(bool hasWon) {
         if (hasWon) {
-            AddReward(10);
+            AddReward(gameManager.scoreToWin);
         }
         else {
-            AddReward(-10);
+            AddReward(-gameManager.scoreToWin);
         }
     }
 
@@ -54,8 +54,9 @@ public class EpicAgent : Agent
         var normalizedVelocity = cRigidbody.velocity.normalized;
         //sensor.AddObservation(transform.localPosition.x);
         //sensor.AddObservation(transform.localPosition.y);
-        //sensor.AddObservation(normalizedVelocity.x);
-        //sensor.AddObservation(normalizedVelocity.z);
+        sensor.AddObservation(normalizedVelocity.x);
+        sensor.AddObservation(normalizedVelocity.z);
+        sensor.AddObservation(cRigidbody.velocity.magnitude);
     }
 
     private void Update() {
@@ -97,7 +98,7 @@ public class EpicAgent : Agent
         if(powerup != null) {
             switch (powerup.type) {
                 case Powerup.Type.Bad:
-                    var reward = Math.Min(-1, -GetCumulativeReward());
+                    var reward = Math.Max(Math.Min(-1, -GetCumulativeReward()), -gameManager.scoreToWin);
                     AddReward(reward);
                     break;
                 case Powerup.Type.Good:

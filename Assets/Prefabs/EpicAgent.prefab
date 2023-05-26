@@ -4855,7 +4855,7 @@ GameObject:
   - component: {fileID: 215261164172067188}
   m_Layer: 0
   m_Name: EpicAgent
-  m_TagString: Untagged
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4957,7 +4957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 0
+    VectorObservationSize: 3
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 3
@@ -5023,7 +5023,7 @@ MonoBehaviour:
   - {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 0}
   - {r: 0, g: 0.66097736, b: 1, a: 0}
   m_GizmoYOffset: 0
-  m_ShowGizmos: 1
+  m_ShowGizmos: 0
   m_CompressionType: 1
   m_ObservationStacks: 1
 --- !u!114 &215261164172067188

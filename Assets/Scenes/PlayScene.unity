@@ -1447,6 +1447,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5f73475cf0cad364b9800b85c2a229fc, type: 2}
+    - target: {fileID: 3877752854754735626, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
+      propertyPath: m_ShowGizmos
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067614127076299867, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: a0b410a4a3d4d9b4f8c55b5008edddab, type: 3}
     - target: {fileID: 5067614127076299867, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: m_BehaviorType
       value: 2
@@ -1465,6 +1473,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: isTraining
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
+      propertyPath: hasTimeLimit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
+      propertyPath: roundTimeLimit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
+      propertyPath: roundWinTimeDecrement
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5772034781075042560, guid: 060f139b8e168e5468341e034c251bf4, type: 3}

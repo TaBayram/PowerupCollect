@@ -10,6 +10,7 @@ TagManager:
   - PowerupBad
   - Floor
   - PowerupSpeed
+  - Unit
   layers:
   - Default
   - TransparentFX
