@@ -33,6 +33,8 @@ public class EpicAgent : Agent
     private void onUnitRoundEnd(bool hasWon) {
         if (hasWon) {
             AddReward(gameManager.scoreToWin);
+
+            AddReward(10*gameManager.scoreToWin* gameManager.scoreToWin / (Time.time - gameManager.RoundStartTime));
         }
         else {
             AddReward(-gameManager.scoreToWin);
@@ -87,7 +89,7 @@ public class EpicAgent : Agent
         transform.Rotate(rotateDir, Time.fixedDeltaTime *(float)unit.Speed);
 
         if(transform.position.y < ((gameManager?.FloorY ?? 0f) - 1)) {
-            EndEpisode();
+            unit.ResetUnit(ResetReason.died);
         }
 
     }

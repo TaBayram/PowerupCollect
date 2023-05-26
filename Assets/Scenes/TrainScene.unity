@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: minRoundTime
-      value: 45
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: roundTimeLimit
@@ -149,7 +149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: roundWinTimeDecrement
-      value: 36
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 6459876924203162206, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -238,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: minRoundTime
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: roundTimeLimit
@@ -427,8 +427,12 @@ PrefabInstance:
       value: Game 3
       objectReference: {fileID: 0}
     - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
+      propertyPath: scoreToWin
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: minRoundTime
-      value: 45
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: roundTimeLimit
@@ -436,7 +440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: roundWinTimeDecrement
-      value: 36
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 6459876924203162206, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -808,7 +812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: minRoundTime
-      value: 60
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: roundTimeLimit
@@ -816,7 +820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: roundWinTimeDecrement
-      value: 36
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 6459876924203162206, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -905,7 +909,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: minRoundTime
-      value: 60
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: roundTimeLimit
@@ -1006,7 +1010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: minRoundTime
-      value: 30
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: roundTimeLimit
@@ -1014,7 +1018,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5649073269087400253, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: roundWinTimeDecrement
-      value: 36
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 6459876924203162206, guid: 060f139b8e168e5468341e034c251bf4, type: 3}
       propertyPath: m_LocalPosition.y

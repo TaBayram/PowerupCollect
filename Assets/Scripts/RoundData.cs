@@ -15,14 +15,12 @@ public class RoundData
     public List<Unit> units = new List<Unit>();
     public float totalDistance = 0;
     public float winScore;
-    public float maxTime;
 
-    public RoundData(int index, Unit winner, float time, float winScore, float maxTime) {
+    public RoundData(int index, Unit winner, float time, float winScore) {
         this.index = index;
         this.winner = winner;
         this.time = time;
         this.winScore = winScore;
-        this.maxTime = maxTime;
         pickupDatas = new Dictionary<string, List<PowerupPickupData>>();
         scoreDatas = new Dictionary<string, int>();
     }
@@ -67,9 +65,9 @@ public class RoundData
         avgScore /= (units.Count * winScore);
         float avgVelocity = totalDistance / (units.Count * time);
 
-        statsRecorder.Add("Game/Round_HasWinner", winner ? 1 : 0);
+        //statsRecorder.Add("Game/Round_HasWinner", winner ? 1 : 0);
 
-        statsRecorder.Add("Game/Round_TimeUsedRatio", time/maxTime);
+        //statsRecorder.Add("Game/Round_TimeUsedRatio", time/maxTime);
 
         if (winner) {
             statsRecorder.Add("Game/Round_TimePerScore", (float)Math.Round(time)/winScore);
