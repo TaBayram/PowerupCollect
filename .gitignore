@@ -55,7 +55,7 @@ Assets/results
 
 # Unity3D generated file on crash reports
 sysinfo.txt
-
+dist
 # Builds
 *.apk
 *.aab

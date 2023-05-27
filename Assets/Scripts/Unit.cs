@@ -23,7 +23,7 @@ public class Unit : MonoBehaviour, IUnit
     public List<PowerupPickupData> powerupPickupData= new List<PowerupPickupData>();
 
     public Action<Unit> onScoreChange;
-    public Action<bool> onRoundEnd;
+    public Action<bool, bool> onRoundEnd;
     public Action<Unit, ResetReason> onReset;
 
     public GameManager gameManager;
@@ -87,14 +87,14 @@ public class Unit : MonoBehaviour, IUnit
         
     }
 
-    internal void Won() {
+    internal void Won(bool directly) {
         winCount++;
-        onRoundEnd?.Invoke(true);
+        onRoundEnd?.Invoke(true, directly);
     }
 
-    internal void Lost() {
+    internal void Lost(bool directly) {
         lossCount++;
-        onRoundEnd?.Invoke(false);
+        onRoundEnd?.Invoke(false, directly);
     }
 
 

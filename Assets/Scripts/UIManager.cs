@@ -32,7 +32,7 @@ public class UIManager : MonoBehaviour
     public void onAIScoreChange(Unit unit) {
         AIScoreText.text ="AI " + unit.Score.ToString();
     }
-    public void onRoundEnd(bool hasWon) {
+    public void onRoundEnd(bool hasWon, bool directly) {
         playerTotalText.text = "W: " + player.winCount + " L: " + player.lossCount;
         AIScoreTotalText.text = "W: " + ai.winCount + " L: " + ai.lossCount;
     }

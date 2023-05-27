@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     public void onUnitScoreChange(Unit unit) {
         if(unit.Score >= scoreToWin) {
-            EndRound(unit);
+            EndRoundWinner(unit);
         }
     }
 
@@ -58,15 +59,39 @@ public class GameManager : MonoBehaviour
         Round++;
     }
 
-    public void EndRound(Unit winner) {
-        var data = new RoundData(Round, winner, Time.time - RoundStartTime, scoreToWin);
-        winner?.Won();
+    public void EndRoundWinner(Unit winner) {
+        winner?.Won(true);
         foreach (var unit in units) {
             if (winner != unit) {
-                unit.Lost();
+                unit.Lost(false);
             }
-            data.pickupDatas.Add(unit.playerName, new List<PowerupPickupData>(unit.powerupPickupData));
-            data.scoreDatas.Add(unit.playerName, unit.Score);
+        }
+        GatherData();
+        StartRound();
+    }
+
+    public void EndRoundLoser(Unit loser) {
+        loser?.Lost(true);
+        foreach (var unit in units) {
+            if (loser != unit) {
+                unit.Won(false);
+            }
+        }
+        GatherData();
+        StartRound();
+    }
+
+    public void ResetRound() {
+        foreach (var unit in units) {
+            unit.ResetUnit(ResetReason.roundStarted);
+        }
+    }
+
+    private void GatherData() {
+        var data = new RoundData(Round, Time.time - RoundStartTime, scoreToWin);
+        foreach (var unit in units) {
+            data.pickupDatas.AddRange(unit.powerupPickupData);
+            data.scoreDatas.Add(unit.Score);
             unit.powerupPickupData.Clear();
             data.totalDistance += unit.totalDistance;
             unit.totalDistance = 0;
@@ -77,15 +102,7 @@ public class GameManager : MonoBehaviour
         if (isTraining) {
             data.Record();
         }
-        StartRound();
     }
-
-    public void ResetRound() {
-        foreach (var unit in units) {
-            unit.ResetUnit(ResetReason.roundStarted);
-        }
-    }
-
 
 
 }

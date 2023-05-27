@@ -6,6 +6,7 @@ public class BadPowerup : Powerup
 {
     public override bool Pickup(Unit unit) {
         if (unit != null) {
+            //unit.gameManager.EndRoundLoser(unit);
             unit.ResetUnit(ResetReason.died);
             return true;
         }

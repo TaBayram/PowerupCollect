@@ -77,7 +77,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameName: 
-  isTraining: 1
   enviroment: {fileID: 8338863219522416942}
   powerupSpawner: {fileID: 3003901694379001352}
   spawnLocations:
@@ -86,10 +85,9 @@ MonoBehaviour:
   - {fileID: 8014962063568137670}
   - {fileID: 6459876924203162206}
   units: []
-  scoreToWin: 15
-  round: 0
   roundDatas: []
-  roundStartTime: 0
+  scoreToWin: 15
+  isTraining: 1
   gameStarted: 0
 --- !u!1 &3447766679089014679
 GameObject:
@@ -937,6 +935,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 5649073269087400253}
+    - target: {fileID: 7419250418931445378, guid: 43d4075cde684c64c879654407a47827, type: 3}
+      propertyPath: TeamId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8208294857170045897, guid: 43d4075cde684c64c879654407a47827, type: 3}
       propertyPath: m_Name
       value: EpicAgent_2

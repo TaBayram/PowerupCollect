@@ -30,25 +30,25 @@ public class EpicAgent : Agent
         }
     }
 
-    private void onUnitRoundEnd(bool hasWon) {
+    private void onUnitRoundEnd(bool hasWon, bool directly) {
         if (hasWon) {
-            AddReward(gameManager.scoreToWin);
-
-            AddReward(10*gameManager.scoreToWin* gameManager.scoreToWin / (Time.time - gameManager.RoundStartTime));
+            AddReward(1);
+            if(directly) {
+                AddReward(gameManager.scoreToWin * gameManager.scoreToWin / (Time.time - gameManager.RoundStartTime));
+            }
         }
         else {
-            AddReward(-gameManager.scoreToWin);
+            AddReward(-1);
+            if (directly) {
+                var reward = Math.Min(0, -GetCumulativeReward());
+                AddReward(reward);
+            }
         }
     }
 
     public override void OnEpisodeBegin() {
         this.cRigidbody.angularVelocity = Vector3.zero;
         this.cRigidbody.velocity = Vector3.zero;
-        this.transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0, 360)));
-        //if(!hasJustReset) {
-        //    this.unit.ResetUnit(true);
-        //}
-        //hasJustReset = false;
     }
 
     public override void CollectObservations(VectorSensor sensor) {
@@ -56,9 +56,9 @@ public class EpicAgent : Agent
         var normalizedVelocity = cRigidbody.velocity.normalized;
         //sensor.AddObservation(transform.localPosition.x);
         //sensor.AddObservation(transform.localPosition.y);
-        sensor.AddObservation(normalizedVelocity.x);
-        sensor.AddObservation(normalizedVelocity.z);
-        sensor.AddObservation(cRigidbody.velocity.magnitude);
+        //sensor.AddObservation(normalizedVelocity.x);
+        //sensor.AddObservation(normalizedVelocity.z);
+        //sensor.AddObservation(cRigidbody.velocity.magnitude);
     }
 
     private void Update() {
@@ -68,25 +68,19 @@ public class EpicAgent : Agent
     }
 
     private void FixedUpdate() {
-        AddReward(-0.005f * Time.deltaTime);
+        AddReward(-0.001f * Time.deltaTime);
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers) {
-        // Actions, size = 2
-
-
         var continuousActions = actionBuffers.ContinuousActions;
         var forward = Mathf.Clamp(continuousActions[0], -1f, 1f);
         var right = Mathf.Clamp(continuousActions[1], -1f, 1f);
-        var rotate = Mathf.Clamp(continuousActions[2], -1f, 1f);
 
         var dirToGo = transform.forward * forward;
         dirToGo += transform.right * right;
-        var rotateDir = -transform.up * rotate;
 
 
         cRigidbody.AddForce(dirToGo * (float)unit.Speed, ForceMode.VelocityChange);
-        transform.Rotate(rotateDir, Time.fixedDeltaTime *(float)unit.Speed);
 
         if(transform.position.y < ((gameManager?.FloorY ?? 0f) - 1)) {
             unit.ResetUnit(ResetReason.died);
@@ -100,14 +94,14 @@ public class EpicAgent : Agent
         if(powerup != null) {
             switch (powerup.type) {
                 case Powerup.Type.Bad:
-                    var reward = Math.Max(Math.Min(-1, -GetCumulativeReward()), -gameManager.scoreToWin);
+                    var reward = Math.Max(Math.Min(-0.50f, -GetCumulativeReward()), -gameManager.scoreToWin);
                     AddReward(reward);
                     break;
                 case Powerup.Type.Good:
-                    AddReward(1);
+                    AddReward(Math.Max(0.10f,1f/gameManager.scoreToWin));
                     break;
                 case Powerup.Type.Speed:
-                    AddReward(0.05f);
+                    AddReward(0.01f);
                     break;
             }
         }
@@ -115,7 +109,7 @@ public class EpicAgent : Agent
 
     private void OnCollisionEnter(Collision collision) {
         if(collision.gameObject.tag == "Wall") {
-            AddReward(-0.01f);
+            AddReward(-0.001f);
         }
     }
 
